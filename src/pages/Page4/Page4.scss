@@ -1,0 +1,91 @@
+@import '../../styles/_mixins';
+@import '../../styles/colors';
+@import '../../styles/variables';
+
+.page4 {
+  height: 100vh;
+  background-color: #000;
+  color: #fff;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-interface {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex: 1;
+}
+
+.input-section {
+  display: flex;
+  gap: 0.5rem;
+
+  input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: none;
+    background-color: #1e1e1e;
+    color: white;
+    font-size: 1rem;
+  }
+
+  button {
+    padding: 0.75rem 1.2rem;
+    background-color: crimson;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darkred;
+    }
+  }
+}
+
+.chat-window {
+  background-color: #111;
+  flex: 1;
+  padding: 1rem;
+  border-radius: 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 50vh;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.user {
+  align-self: flex-end;
+  color: #0af;
+}
+
+.ai {
+  align-self: flex-start;
+  color: #afa;
+}
+
+.back-home {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: crimson;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: darkred;
+  }
+}
