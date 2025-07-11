@@ -30,11 +30,13 @@ export const App = () => {
 
   return (
     <>
+    <div className="app-wrapper">
       <Header />
       <main>
         <Outlet />
       </main>
       <Footer />
+    </div>
     </>
   );
 }

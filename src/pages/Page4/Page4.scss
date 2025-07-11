@@ -3,7 +3,6 @@
 @import '../../styles/variables';
 
 .page4 {
-  height: 100vh;
   background-color: #000;
   color: #fff;
   padding: 2rem;
@@ -22,15 +21,20 @@
 .input-section {
   display: flex;
   gap: 0.5rem;
+  align-items: flex-start;
 
-  input {
+  textarea {
     flex: 1;
+    min-height: 2.5rem;
+    max-height: 30vh;
+    resize: none;
     padding: 0.75rem 1rem;
     border-radius: 8px;
     border: none;
     background-color: #1e1e1e;
     color: white;
     font-size: 1rem;
+    overflow: hidden;
   }
 
   button {
@@ -50,16 +54,17 @@
 
 .chat-window {
   background-color: #111;
-  flex: 1;
   padding: 1rem;
   border-radius: 12px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  max-height: 50vh;
+  flex-grow: 1;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  min-height: 40vh;
 }
+
 
 .user {
   align-self: flex-end;
