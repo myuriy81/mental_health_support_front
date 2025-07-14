@@ -8,12 +8,12 @@ export const Footer = () => {
 
         <div className="footer__contact">
           <h3>КОНТАКТ ЦЕНТР:</h3>
-          <a href="tel:+380684308002">+38 (068) 430 80 02</a>
+          <a href="tel:+380684308002">+38 (040) 00 000 00</a>
         </div>
 
         <div className="footer__telegram">
           <h3>ЧАТ-БОТ TELEGRAM:</h3>
-          <a href="https://t.me/ab3_rc_bot">@ab3_rc_bot</a>
+          <a href="https://t.me/ab3_rc_bot">@bla_bla_bla</a>
         </div>
       </div>
 
