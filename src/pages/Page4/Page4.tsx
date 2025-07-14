@@ -1,17 +1,32 @@
 import './Page4.scss';
 import { Link } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
+import { fetchLLMResponse } from '../../httpClient/llmClient';
+
+type Message = {
+  sender: 'user' | 'ai';
+  text: string;
+};
 
 export const Page4 = () => {
   const [input, setInput] = useState('');
-  const [chat, setChat] = useState<string[]>([]);
+  const [chat, setChat] = useState<Message[]>([]);
+  const [loading, setLoading] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!input.trim()) return;
 
-    setChat(prev => [...prev, `🧑: ${input}`, `🤖: (ответ LLM)`]);
+    const userMsg: Message = { sender: 'user', text: input };
+    setChat((prev) => [...prev, userMsg]);
+    setLoading(true);
+
+    const aiResponse = await fetchLLMResponse(input);
+    const aiMsg: Message = { sender: 'ai', text: aiResponse };
+
+    setChat((prev) => [...prev, aiMsg]);
     setInput('');
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -29,7 +44,7 @@ export const Page4 = () => {
         <div className="input-section">
           <textarea
             ref={textareaRef}
-            placeholder="Напиши что-нибудь..."
+            placeholder="Розкажи, що тебе турбує..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => {
@@ -39,15 +54,19 @@ export const Page4 = () => {
               }
             }}
           />
-          <button onClick={handleSend}>Отправить</button>
+          <button onClick={handleSend} disabled={loading}>
+            Відправити
+          </button>
         </div>
 
-        <div className="chat-window">
+        <div className={`chat-window${chat.length === 0 ? ' empty' : ''}`}>
           {chat.map((msg, index) => (
-            <p key={index} className={msg.startsWith('🧑') ? 'user' : 'ai'}>
-              {msg}
+            <p key={index} className={msg.sender === 'user' ? 'user' : 'ai'}>
+              {msg.sender === 'user' ? '🧑: ' : '🤖: '}
+              {msg.text}
             </p>
           ))}
+          {loading && <p className="ai">🤖: Печатает...</p>}
         </div>
       </div>
 
@@ -58,7 +77,7 @@ export const Page4 = () => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
       >
-        На главную
+        На головну
       </Link>
     </div>
   );

@@ -15,7 +15,7 @@ export const Page1 = () => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
       >
-        На главную
+        На головну
       </Link>
     </div>
   );

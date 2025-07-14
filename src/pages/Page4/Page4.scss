@@ -1,6 +1,6 @@
-@import '../../styles/_mixins';
-@import '../../styles/colors';
-@import '../../styles/variables';
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/colors.scss' as *;
 
 .page4 {
   background-color: #000;
@@ -8,6 +8,7 @@
   padding: 2rem;
   display: flex;
   flex-direction: column;
+  min-height: 80vh;
 }
 
 .chat-interface {
@@ -53,17 +54,24 @@
 }
 
 .chat-window {
-  background-color: #111;
+  background-color: #1e1e1e;
   padding: 1rem;
   border-radius: 12px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  flex-grow: 1;
+ // flex-grow: 1;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-  min-height: 40vh;
+  transition: min-height 0.3s ease;
+
+  min-height: 40vh; // стандарт
+
+  &.empty {
+    min-height: 44vh; // если пусто — уменьшаем примерно на 40%
+  }
 }
+
 
 
 .user {
@@ -78,7 +86,6 @@
 
 .back-home {
   position: fixed;
-  bottom: 20px;
   right: 20px;
   background-color: crimson;
   color: white;
@@ -89,8 +96,34 @@
   font-size: 0.9rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: background-color 0.3s ease;
+  z-index: 1000; 
+  bottom: 70px;
 
   &:hover {
     background-color: darkred;
   }
+}
+
+.user {
+  align-self: flex-end;
+  background-color: #0a0a2a;
+  padding: 0.75rem 1rem;
+  border-radius: 1rem 1rem 0 1rem;
+  max-width: 70%;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: #0af;
+  font-family: monospace;
+}
+
+.ai {
+  align-self: flex-start;
+  background-color: #1a1a1a;
+  padding: 0.75rem 1rem;
+  border-radius: 1rem 1rem 1rem 0;
+  max-width: 70%;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: #afa;
+  font-family: monospace;
 }

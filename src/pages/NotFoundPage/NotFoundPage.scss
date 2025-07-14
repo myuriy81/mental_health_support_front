@@ -1,6 +1,6 @@
-@import '../../styles/_mixins';
-@import '../../styles/colors';
-@import '../../styles/variables';
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/colors.scss' as *;
 
 .pageNotFound {
   max-width: 100%;
