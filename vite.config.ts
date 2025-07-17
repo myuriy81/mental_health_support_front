@@ -1,8 +1,10 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
+/// <reference types="node" />
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/mental_health_support_front/'
+  base: process.env.NODE_ENV === 'production' ? '/mental_health_support_front/' : '/'
 });

@@ -1,5 +1,5 @@
 import './Page4.scss';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
 import { fetchLLMResponse } from '../../httpClient/llmClient';
 
@@ -54,31 +54,29 @@ export const Page4 = () => {
               }
             }}
           />
-          <button onClick={handleSend} disabled={loading}>
-            Відправити
+          <button className="custom-submit-button" onClick={handleSend} disabled={loading}>
+            <svg viewBox="0 0 160 50" className="button-frame" preserveAspectRatio="none">
+              <path
+                d="M10 0 H160 V33 L150 50 H0 V16 Z"
+                fill="none"
+                stroke="white"
+                strokeWidth="2"
+              />
+            </svg>
+            <span className="button-text">відправити</span>
           </button>
         </div>
 
         <div className={`chat-window${chat.length === 0 ? ' empty' : ''}`}>
           {chat.map((msg, index) => (
             <p key={index} className={msg.sender === 'user' ? 'user' : 'ai'}>
-              {msg.sender === 'user' ? '🧑: ' : '🤖: '}
+              {msg.sender === 'user' ? '👨‍✈️: ' : '👨‍⚕️: '}
               {msg.text}
             </p>
           ))}
-          {loading && <p className="ai">🤖: Печатает...</p>}
+          {loading && <p className="ai">👨‍⚕️: Печатает...</p>}
         </div>
       </div>
-
-      <Link
-        to="/"
-        className="back-home"
-        onClick={() => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-      >
-        На головну
-      </Link>
     </div>
   );
 };

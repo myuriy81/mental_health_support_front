@@ -4,19 +4,10 @@ import { Link } from 'react-router-dom';
 export const Page3 = () => {
   return (
     <div className="page3">
-        <h1>Page 3</h1>
-        <div className="href">
-          <Link to="/page4">
-            Forward
-          </Link>
+      <h1>Page 3</h1>
+      <div className="href">
+        <Link to="/page4">Forward</Link>
       </div>
-      <Link to="/" className="back-home"
-              onClick={() => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-      >
-        На головну
-      </Link>
     </div>
   );
 };

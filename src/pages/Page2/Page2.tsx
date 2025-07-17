@@ -21,15 +21,6 @@ export const Page2 = () => {
       <div className="href">
         <Link to="/page3">Forward</Link>
       </div>
-      <Link
-        to="/"
-        className="back-home"
-        onClick={() => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-      >
-        На головну
-      </Link>
     </div>
   );
 };

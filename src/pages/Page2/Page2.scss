@@ -47,25 +47,6 @@
   }
 }
 
-.back-home {
-  position: fixed;
-  z-index: 1000; 
-  bottom: 70px;
-  right: 20px;
-  background-color: crimson;
-  color: white;
-  padding: 0.6rem 1.2rem;
-  border-radius: 9999px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 0.9rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: darkred;
-  }
-}
 
 @keyframes pulse {
   0% {
@@ -117,14 +98,14 @@
 
   &:hover {
     animation: none;
-    transform: scale(0.96); // 🔴 Уменьшение при hover
+    transform: scale(0.96);
 
     .button-frame path {
-      stroke: #ffaa2b; // 🔴 Цвет рамки при hover
+      stroke: #ffaa2b;
     }
 
     .button-text {
-      color: #ffaa2b; // 🔴 Цвет текста при hover
+      color: #ffaa2b;
     }
   }
 }
