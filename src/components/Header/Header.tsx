@@ -34,7 +34,7 @@ export const Header = () => {
     <header className={`header ${isVisible ? 'header--visible' : 'header--hidden'}`}>
       <div className="logo">
         <a href="#">
-          <img src="/img/logo/logo.png" alt="logo" />
+          <img src={`${import.meta.env.BASE_URL}img/logo/logo.png`} />
         </a>
       </div>
       <Link
@@ -44,7 +44,7 @@ export const Header = () => {
       >
         <div className="custom-button-header">
           <svg viewBox="0 0 300 70" className="button-frame" preserveAspectRatio="none">
-            <path d="M15 0 H300 V46 L284 70 H0 V23 Z" fill="none" stroke="white" strokeWidth="2" />
+            <path d="M15 0 H300 V46 L284 70 H0 V23 Z" fill="none" stroke="white" strokeWidth="4" />
           </svg>
           <span className="button-text">на головну</span>
         </div>

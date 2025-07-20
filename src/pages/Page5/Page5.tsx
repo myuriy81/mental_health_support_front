@@ -1,0 +1,152 @@
+// Page1.tsx
+import './Page5.scss';
+
+export const Page5 = () => {
+  return (
+    <div className="page5">
+      <div className="page1-content">
+        <div className="content-box1">
+          <div className="content-box-danger">
+            <h1 className="title-text-danger">
+              Зв’яжись з ним терміново! &nbsp;Інакше може бути пізно.
+            </h1>
+          </div>
+          <div className="psycholog">
+            <h3>((Для редактирования!!! Информация и персонаж вымышленные))</h3>
+          </div>
+          <div className="psychologist-block">
+            <div className="psychologist-photo">
+              <div className="photo-placeholder">
+                <img
+                  src={`${import.meta.env.BASE_URL}img/logo/1.png`}
+                  alt="Page not found"
+                  className="pageNotFound"
+                />
+              </div>
+            </div>
+
+            <div className="psychologist-info">
+              <h3 className="title-text">Лікар-психіатр, психотерапевт, кандидат медичних наук</h3>
+              <h3>Карлос Богданович Кастанєда</h3>
+
+              <div className="footer__contact contact-row">
+                <h3>ТЕЛЕФОН:</h3>
+                <a href="tel:+380400000000">+38 (040) 00 000 00</a>
+              </div>
+
+              <div className="footer__telegram contact-row">
+                <h3>TELEGRAM:</h3>
+                <a href="https://t.me/jjjj">@bla_bla_bla</a>
+              </div>
+            </div>
+          </div>
+
+          <div className="psychologist-text">
+            <section>
+              <h3>Класифікація спеціалізації:</h3>
+              <ul>
+                <li>Психіатрія (клінічна)</li>
+                <li>Медична психологія</li>
+                <li>Психотерапія (когнітивно-поведінкова, гештальт, екзистенційна)</li>
+                <li>Реабілітація учасників бойових дій та посттравматичних станів (ПТСР)</li>
+              </ul>
+
+              <h3>Освіта:</h3>
+              <ul>
+                <li>
+                  <strong>Медичний університет імені П. Х. Андерсона (Іспанія)</strong> — факультет
+                  психіатрії
+                </li>
+                <li>
+                  <strong>Київський інститут психотерапії</strong> — спеціалізація з клінічної
+                  психології
+                </li>
+                <li>
+                  Курси підвищення кваліфікації у Віденській школі нейропсихіатрії та Гарвардській
+                  школі медицини (онлайн)
+                </li>
+              </ul>
+
+              <h3>Професійний досвід:</h3>
+              <ul>
+                <li>
+                  Понад 20 років клінічної практики у сфері психіатрії та кризової інтервенції
+                </li>
+                <li>Експерт із супроводу ветеранів, постраждалих від воєнних конфліктів</li>
+                <li>
+                  Колишній завідувач відділення кризової психіатрії у Міжнародному центрі
+                  ментального здоров’я (Барселона)
+                </li>
+                <li>
+                  Консультант міжнародних місій «Лікарі без кордонів» (Doctors Without Borders)
+                </li>
+              </ul>
+
+              <h3>Заслуги та наукові досягнення:</h3>
+              <ul>
+                <li>
+                  Автор понад 40 наукових публікацій з питань тривожних розладів, депресії та ПТСР
+                </li>
+                <li>
+                  Розробник власного методу поетапної стабілізації психіки у ветеранів бойових дій
+                </li>
+                <li>
+                  Нагороджений відзнакою - За відданість пацієнтам (Міжнародна асоціація психіатрів,
+                  2021 р.)
+                </li>
+                <li>
+                  Постійний учасник конференцій з ментального здоров’я (Женева, Торонто, Львів)
+                </li>
+                <li>Учасник робочої групи МОЗ з реформи психіатричної допомоги в Україні</li>
+              </ul>
+
+              <h3>Професійне кредо:</h3>
+              <p>
+                Карлос Богданович дотримується гуманістичного підходу до лікування, орієнтуючись на
+                комплексну допомогу — медикаментозну, психотерапевтичну та соціальну. Вірить, що
+                стабільність — це не відсутність проблем, а навичка проживати їх усвідомлено.
+              </p>
+            </section>
+          </div>
+
+          <div className="photo-grid">
+            <div className="photo-placeholder">
+              {' '}
+              <img
+                src={`${import.meta.env.BASE_URL}img/logo/2.png`}
+                alt="Page not found"
+                className="pageNotFound"
+              />
+            </div>
+            <div className="photo-placeholder">
+              {' '}
+              <img
+                src={`${import.meta.env.BASE_URL}img/logo/3.png`}
+                alt="Page not found"
+                className="pageNotFound"
+              />
+            </div>
+            <div className="photo-placeholder">
+              {' '}
+              <img
+                src={`${import.meta.env.BASE_URL}img/logo/4.png`}
+                alt="Page not found"
+                className="pageNotFound"
+              />
+            </div>
+            <div className="photo-placeholder">
+              {' '}
+              <img
+                src={`${import.meta.env.BASE_URL}img/logo/5.png`}
+                alt="Page not found"
+                className="pageNotFound"
+              />
+            </div>
+          </div>
+
+          <div className="custom-button3">...</div>
+        </div>
+      </div>
+    </div>
+  );
+};

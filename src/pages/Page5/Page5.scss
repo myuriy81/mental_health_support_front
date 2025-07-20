@@ -2,7 +2,7 @@
 @use '../../styles/variables' as *;
 @use '../../styles/colors.scss' as *;
 
-.page1 {
+.page5 {
   position: relative;
   min-height: 80vh;
   background-color: #000;
@@ -13,6 +13,45 @@
   justify-content: center;
   align-items: flex-start;
 
+@keyframes flashDanger {
+  0%, 49% {
+    border-image-source: repeating-linear-gradient(
+      to right,
+      red 0,
+      red 34px,
+      transparent 34px,
+      transparent 56px
+    );
+  }
+  50%, 100% {
+    border-image-source: repeating-linear-gradient(
+      to right,
+      transparent 0,
+      transparent 100%
+    );
+  }
+}
+
+
+.content-box-danger {
+  border-width: 6px;
+  border-style: solid;
+  border-image: repeating-linear-gradient(
+    to right,
+    red 0,
+    red 24px,
+    transparent 24px,
+    transparent 36px
+  ) 1;
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+
+  animation: flashDanger 2s infinite steps(1, end);
+  transition: opacity 0.2s ease;
+}
   .content-box1 {
     width: calc(100vw - 94px);
     margin-left: 15px;
@@ -80,10 +119,10 @@
   }
 }
 
-.title-text1 {
+.title-text-danger {
   font-family: 'Russo One', sans-serif;
   font-size: 24px;
-  color: #ffaa2b;
+  color: white;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -231,4 +270,83 @@
       color: #84f8ff;
     }
   }
+}
+
+.psychologist-block {
+  display: flex;
+  gap: 2rem;
+  margin: 2rem 0;
+  align-items: flex-start;
+}
+
+.photo-placeholder {
+  width: 120px;
+  height: 170px;
+  background-color: #444;
+  border: 2px solid #ffaa2b;
+ // border-radius: 8px;
+  img{
+ width: 120px;
+  height: 170px;
+  }
+}
+
+
+.psychologist-info h3 {
+  margin: 0 0 0.5rem;
+  font-size: 18px;
+}
+
+.psychologist-info p {
+  margin: 0.25rem 0;
+}
+
+.psychologist-text {
+    text-align: left;
+  margin-bottom: 2rem;
+  p {
+    margin: 0.5rem 0;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}
+
+.photo-grid {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.psycholog{
+  color: red;
+    text-decoration: underline;
+     font-size: 20px;
+}
+
+.psychologist-block {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.psychologist-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  color: #fff;
+}
+
+.psychologist-info h3,
+.psychologist-info p {
+  margin: 0.25rem 0;
+  text-align: left;
+}
+
+.contact-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 0.5rem;
 }

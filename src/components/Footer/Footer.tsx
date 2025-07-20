@@ -7,7 +7,7 @@ export const Footer = () => {
       <div className="footer__top">
         <div className="logo">
           <a href="#">
-            <img src="/img/logo/logo.png" alt="logo" />
+            <img src={`${import.meta.env.BASE_URL}img/logo/logo.png`} alt="logo" />
           </a>
         </div>
 
@@ -26,22 +26,22 @@ export const Footer = () => {
 
           <div className="footer__socials">
             <a href="#">
-              <img src="/img/icons/Frame-53.svg" alt="Facebook" />
+              <img src={`${import.meta.env.BASE_URL}img/icons/Frame-53.svg`} alt="Facebook" />
             </a>
             <a href="#">
-              <img src="/img/icons/Frame-56.svg" alt="Instagram" />
+              <img src={`${import.meta.env.BASE_URL}img/icons/Frame-56.svg`} alt="Instagram" />
             </a>
             <a href="#">
-              <img src="/img/icons/Frame-57.png" alt="X (Twitter)" />
+              <img src={`${import.meta.env.BASE_URL}img/icons/Frame-57.png`} alt="X (Twitter)" />
             </a>
             <a href="#">
-              <img src="/img/icons/Frame-54.svg" alt="Telegram" />
+              <img src={`${import.meta.env.BASE_URL}img/icons/Frame-54.svg`} alt="Telegram" />
             </a>
             <a href="#">
-              <img src="/img/icons/Frame-55.svg" alt="YouTube" />
+              <img src={`${import.meta.env.BASE_URL}img/icons/Frame-55.svg`} alt="YouTube" />
             </a>
             <a href="#">
-              <img src="/img/icons/Frame-58.png" alt="TikTok" />
+              <img src={`${import.meta.env.BASE_URL}img/icons/Frame-58.png`} alt="TikTok" />
             </a>
           </div>
         </div>
@@ -53,7 +53,7 @@ export const Footer = () => {
       >
         <div className="custom-button1">
           <svg viewBox="0 0 300 70" className="button-frame" preserveAspectRatio="none">
-            <path d="M15 0 H300 V46 L284 70 H0 V23 Z" fill="none" stroke="white" strokeWidth="2" />
+            <path d="M15 0 H300 V46 L284 70 H0 V23 Z" fill="none" stroke="white" strokeWidth="4" />
           </svg>
           <span className="button-text">на головну</span>
         </div>

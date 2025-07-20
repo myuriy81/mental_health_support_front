@@ -2,12 +2,13 @@
 @use '../../styles/variables' as *;
 @use '../../styles/colors.scss' as *;
 
-.page1 {
+.page22 {
   position: relative;
   min-height: 80vh;
   background-color: #000;
   color: #fff;
   padding: 2rem;
+  padding-bottom: 0px;
 
   display: flex;
   justify-content: center;
@@ -25,6 +26,8 @@
     position: relative;
     padding-left: 80px;
     padding-right: 80px;
+    padding-top: 40px;
+padding-bottom: 40px;
 
     // Углы-пульсаторы
     &::before,
@@ -80,13 +83,28 @@
   }
 }
 
-.title-text1 {
+.title-textQuestion a {
+  display: block;
+  color: #ffaa2b;
+  text-decoration: none;
   font-family: 'Russo One', sans-serif;
   font-size: 24px;
-  color: #ffaa2b;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  transition: color 0.3s ease, transform 0.3s ease;
+  margin-bottom: 44px;
+  text-align: left;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+.title-textQuestion a:hover {
+  color: #cc8800; 
+  transform: scale(1.05); 
 }
 
 .section-text1 {
@@ -110,13 +128,13 @@
   }
 }
 
-.custom-button2 {
+.custom-buttonQuestion {
   width: 270px;
   height: 42px;
   background: transparent;
   position: relative;
   margin: 1rem auto;
-  margin-top: 10rem;
+  margin-top: 1rem;
   margin-bottom: 2rem;
   animation: pulse 3s infinite ease-in-out;
 
@@ -231,4 +249,63 @@
       color: #84f8ff;
     }
   }
+}
+
+.questionnaire-pairs {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 3rem;
+}
+
+.question-pair {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.question-text {
+  font-family: 'Russo One', sans-serif;
+  font-size: 24px;
+  color: #ffaa2b;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.options {
+  display: flex;
+  gap: 32px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: #fff;
+}
+
+.option input[type='radio'] {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 2px solid white;
+  border-radius: 3px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.option input[type='radio']:checked {
+  background-color: #007bff;
+  border-color: red;
+}
+
+.option input[type='radio']:hover {
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.4);
 }
