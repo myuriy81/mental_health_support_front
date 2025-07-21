@@ -1,9 +1,12 @@
 import './Page22.scss';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useAnswers } from '../../context/AnswersContext';
 
 export const Page22 = () => {
   const navigate = useNavigate();
+  const { setPromptAnswersFromPage, setDiagnosis } = useAnswers();
+
   const [answers, setAnswers] = useState<{ [key: string]: string }>({});
 
   const questions = [
@@ -23,13 +26,25 @@ export const Page22 = () => {
   useEffect(() => {
     if (Object.keys(answers).length === questions.length) {
       const takCount = Object.values(answers).filter((val) => val === 'так').length;
+
+      const selected = questions
+        .map((q, i) => {
+          const val = answers[`q${i}`];
+          return val === 'так' ? `${i + 1}. ${q}` : null;
+        })
+        .filter(Boolean) as string[];
+
+      setPromptAnswersFromPage(selected);
+      setDiagnosis(takCount >= 4 ? 'птср' : '');
+
       if (takCount >= 4) {
         navigate('/page5');
       } else {
         navigate('/page4');
       }
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [answers]);
 
   return (

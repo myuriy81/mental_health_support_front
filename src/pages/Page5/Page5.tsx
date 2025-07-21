@@ -1,4 +1,4 @@
-// Page1.tsx
+// Page5.tsx
 import './Page5.scss';
 
 export const Page5 = () => {
@@ -8,18 +8,20 @@ export const Page5 = () => {
         <div className="content-box1">
           <div className="content-box-danger">
             <h1 className="title-text-danger">
-              Зв’яжись з ним терміново! &nbsp;Інакше може бути пізно.
+              Зв’яжись з ним терміново!&nbsp;Інакше може бути пізно.
             </h1>
           </div>
+
           <div className="psycholog">
-            <h3>((Для редактирования!!! Информация и персонаж вымышленные))</h3>
+            <h3>((Для редактирования!!! Інформація та персонаж вигадані))</h3>
           </div>
+
           <div className="psychologist-block">
             <div className="psychologist-photo">
               <div className="photo-placeholder">
                 <img
                   src={`${import.meta.env.BASE_URL}img/logo/1.png`}
-                  alt="Page not found"
+                  alt="Фото лікаря"
                   className="pageNotFound"
                 />
               </div>
@@ -91,7 +93,7 @@ export const Page5 = () => {
                   Розробник власного методу поетапної стабілізації психіки у ветеранів бойових дій
                 </li>
                 <li>
-                  Нагороджений відзнакою - За відданість пацієнтам (Міжнародна асоціація психіатрів,
+                  Нагороджений відзнакою «За відданість пацієнтам» (Міжнародна асоціація психіатрів,
                   2021 р.)
                 </li>
                 <li>
@@ -110,38 +112,15 @@ export const Page5 = () => {
           </div>
 
           <div className="photo-grid">
-            <div className="photo-placeholder">
-              {' '}
-              <img
-                src={`${import.meta.env.BASE_URL}img/logo/2.png`}
-                alt="Page not found"
-                className="pageNotFound"
-              />
-            </div>
-            <div className="photo-placeholder">
-              {' '}
-              <img
-                src={`${import.meta.env.BASE_URL}img/logo/3.png`}
-                alt="Page not found"
-                className="pageNotFound"
-              />
-            </div>
-            <div className="photo-placeholder">
-              {' '}
-              <img
-                src={`${import.meta.env.BASE_URL}img/logo/4.png`}
-                alt="Page not found"
-                className="pageNotFound"
-              />
-            </div>
-            <div className="photo-placeholder">
-              {' '}
-              <img
-                src={`${import.meta.env.BASE_URL}img/logo/5.png`}
-                alt="Page not found"
-                className="pageNotFound"
-              />
-            </div>
+            {[2, 3, 4, 5].map((n) => (
+              <div className="photo-placeholder" key={n}>
+                <img
+                  src={`${import.meta.env.BASE_URL}img/logo/${n}.png`}
+                  alt={`Фото ${n}`}
+                  className="pageNotFound"
+                />
+              </div>
+            ))}
           </div>
 
           <div className="custom-button3">...</div>

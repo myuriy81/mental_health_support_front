@@ -1,32 +1,44 @@
 import './Page3.scss';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAnswers } from '../../context/AnswersContext';
 
 export const Page3 = () => {
   const [answers, setAnswers] = useState<{ [key: string]: string }>({});
   const navigate = useNavigate();
+  const { setPromptAnswersFromPage, setDiagnosis } = useAnswers();
+
+  const totalQuestions = 6;
+  const expectedKeys = Array.from({ length: totalQuestions }, (_, i) => `q${i}`);
 
   const handleSelect = (question: string, value: string) => {
     setAnswers((prev) => ({ ...prev, [question]: value }));
   };
 
   useEffect(() => {
-    const totalQuestions = 6;
+    const allAnswered = expectedKeys.every(
+      (key) => answers[key] !== undefined && answers[key] !== ''
+    );
 
-    const allAnswered = Object.keys(answers).length === totalQuestions;
+    if (!allAnswered) return;
 
-    if (allAnswered) {
-      const sum = Object.values(answers)
-        .map((val) => parseInt(val, 10))
-        .reduce((acc, curr) => acc + curr, 0);
+    const sum = expectedKeys.reduce((acc, key) => acc + parseInt(answers[key], 10), 0);
 
-      if (sum >= 21) {
-        navigate('/page5');
-      } else {
-        navigate('/page4');
-      }
-    }
-  }, [answers, navigate]);
+    const promptText = [
+      'Оцінка ризику суїциду:',
+      `Сума відповідей: ${sum}`,
+      ...expectedKeys.map((key, i) => `Питання ${i + 1}: ${answers[key]}`)
+    ];
+
+    setPromptAnswersFromPage(promptText);
+
+    if (sum >= 21) {
+      setDiagnosis('суїцид');
+      navigate('/page5');
+    } else {
+      navigate('/page4');
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [answers]);
 
   const questionBlock = (question: string, options: string[], index: number) => (
     <div className="question-block" key={index}>
@@ -70,6 +82,8 @@ export const Page3 = () => {
               Оберіть кожну відповідь, що відповідає вашим думкам чи досвіду.
             </span>
           </div>
+
+          {/* Вопрос 1 — ручной */}
           <div className="question-block">
             <h2 className="title-text1">
               1. Ви коли-небудь думали про самогубство або намагалися його вчинити?
@@ -113,6 +127,7 @@ export const Page3 = () => {
             </div>
           </div>
 
+          {/* Остальные 5 вопросов */}
           {questionBlock(
             'Як часто Ви думали про самогубство протягом останнього року?',
             ['0', '1', '2', '3', '4', '5'],

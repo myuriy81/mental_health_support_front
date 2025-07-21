@@ -1,6 +1,7 @@
 import './Page4.scss';
-import { useState, useRef, useEffect } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { fetchLLMResponse } from '../../httpClient/llmClient';
+import { useAnswers } from '../../context/AnswersContext';
 
 type Message = {
   sender: 'user' | 'ai';
@@ -8,26 +9,31 @@ type Message = {
 };
 
 export const Page4 = () => {
+  const { promptAnswers } = useAnswers();
   const [input, setInput] = useState('');
   const [chat, setChat] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const chatWindowRef = useRef<HTMLDivElement>(null);
 
-  const handleSend = async () => {
-    if (!input.trim()) return;
+  const handleSend = useCallback(
+    async (customInput?: string) => {
+      const text = (customInput ?? input).trim();
+      if (!text) return;
 
-    const userMsg: Message = { sender: 'user', text: input };
-    setChat((prev) => [...prev, userMsg]);
-    setLoading(true);
+      const userMsg: Message = { sender: 'user', text };
+      setChat((prev) => [...prev, userMsg]);
+      setLoading(true);
 
-    const aiResponse = await fetchLLMResponse(input);
-    const aiMsg: Message = { sender: 'ai', text: aiResponse };
+      const aiResponse = await fetchLLMResponse(text);
+      const aiMsg: Message = { sender: 'ai', text: aiResponse };
 
-    setChat((prev) => [...prev, aiMsg]);
-    setInput('');
-    setLoading(false);
-  };
+      setChat((prev) => [...prev, aiMsg]);
+      if (!customInput) setInput('');
+      setLoading(false);
+    },
+    [input]
+  );
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -50,6 +56,13 @@ export const Page4 = () => {
     }
   }, [chat]);
 
+  useEffect(() => {
+    if (promptAnswers.length > 0 && chat.length === 0) {
+      const fullPrompt = `Користувач зазначив наступні проблеми:\n\n${promptAnswers.join('\n')}\n\nНадай йому підтримку та рекомендації.`;
+      handleSend(fullPrompt);
+    }
+  }, [promptAnswers, chat.length, handleSend]);
+
   return (
     <div className="page4">
       <p className="title-text">онлайн психолог</p>
@@ -69,7 +82,11 @@ export const Page4 = () => {
                 }
               }}
             />
-            <button className="custom-submit-button" onClick={handleSend} disabled={loading}>
+            <button
+              className="custom-submit-button"
+              onClick={() => handleSend()}
+              disabled={loading}
+            >
               <svg viewBox="0 0 160 50" className="button-frame" preserveAspectRatio="none">
                 <path
                   d="M10 0 H160 V33 L150 50 H0 V16 Z"

@@ -1,9 +1,12 @@
 import './Page21.scss';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAnswers } from '../../context/AnswersContext';
 
 export const Page21 = () => {
   const navigate = useNavigate();
+  const { setPromptAnswersFromPage, setDiagnosis } = useAnswers();
+
   const [checked, setChecked] = useState<boolean[]>(Array(8).fill(false));
 
   const handleCheck = (index: number) => {
@@ -16,6 +19,24 @@ export const Page21 = () => {
     const totalChecked = checked.filter(Boolean).length;
     const firstGroup = checked.slice(0, 4).filter(Boolean).length;
     const secondGroup = checked.slice(4, 8).filter(Boolean).length;
+
+    const selectedSymptoms = questions
+      .map((q, i) => (checked[i] ? `${i + 1}. ${q}` : null))
+      .filter(Boolean) as string[];
+
+    // Сохраняем ответы в контекст
+    setPromptAnswersFromPage(selectedSymptoms);
+
+    // Назначаем диагноз
+    if (firstGroup >= 3 && secondGroup >= 3) {
+      setDiagnosis('синдром'); // Тревожно-депрессивный
+    } else if (firstGroup >= 3) {
+      setDiagnosis('депресія');
+    } else if (secondGroup >= 3) {
+      setDiagnosis('тривога');
+    } else {
+      setDiagnosis('');
+    }
 
     if (totalChecked >= 6 || firstGroup >= 3 || secondGroup >= 3) {
       navigate('/page5');

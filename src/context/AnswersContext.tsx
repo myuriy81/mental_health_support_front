@@ -1,44 +1,56 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState } from 'react';
+import type { ReactNode } from 'react';
 
-// Определим типы для каждой страницы отдельно
+// Тип для диагноза
 export type Diagnosis = 'депресія' | 'тривога' | 'синдром' | 'птср' | 'суїцид' | '';
 
-interface AnswersContextType {
-  answers: string[]; // Массив ответов с одной страницы — Page21, Page22 или Page3
-  diagnosis: Diagnosis;
-  prompt: string;
-  setAnswers: (newAnswers: string[]) => void;
-  setDiagnosis: (newDiagnosis: Diagnosis) => void;
-  setPrompt: (newPrompt: string) => void;
+// Тип контекста
+type AnswersContextType = {
+  answers: string[];
+  setAnswers: (a: string[]) => void;
+  diagnosis: string;
+  setDiagnosis: React.Dispatch<React.SetStateAction<Diagnosis>>;
+  promptAnswers: string[];
+  setPromptAnswersFromPage: (a: string[]) => void;
   resetAll: () => void;
-}
+};
 
+// Создание контекста
 const AnswersContext = createContext<AnswersContextType | undefined>(undefined);
 
+// Провайдер
 export const AnswersProvider = ({ children }: { children: ReactNode }) => {
   const [answers, setAnswersState] = useState<string[]>([]);
   const [diagnosis, setDiagnosisState] = useState<Diagnosis>('');
-  const [prompt, setPromptState] = useState('');
+  const [promptAnswers, setPromptAnswers] = useState<string[]>([]);
 
   const setAnswers = (newAnswers: string[]) => setAnswersState(newAnswers);
-  const setDiagnosis = (newDiagnosis: Diagnosis) => setDiagnosisState(newDiagnosis);
-  const setPrompt = (newPrompt: string) => setPromptState(newPrompt);
+  const setPromptAnswersFromPage = (a: string[]) => setPromptAnswers(a);
 
   const resetAll = () => {
     setAnswersState([]);
     setDiagnosisState('');
-    setPromptState('');
+    setPromptAnswers([]);
   };
 
   return (
     <AnswersContext.Provider
-      value={{ answers, diagnosis, prompt, setAnswers, setDiagnosis, setPrompt, resetAll }}
+      value={{
+        answers,
+        setAnswers,
+        diagnosis,
+        setDiagnosis: setDiagnosisState,
+        promptAnswers,
+        setPromptAnswersFromPage,
+        resetAll
+      }}
     >
       {children}
     </AnswersContext.Provider>
   );
 };
 
+// Хук
 export const useAnswers = (): AnswersContextType => {
   const context = useContext(AnswersContext);
   if (!context) {
