@@ -8,7 +8,7 @@ export type Diagnosis = 'депресія' | 'тривога' | 'синдром'
 type AnswersContextType = {
   answers: string[];
   setAnswers: (a: string[]) => void;
-  diagnosis: string;
+  diagnosis: Diagnosis;
   setDiagnosis: React.Dispatch<React.SetStateAction<Diagnosis>>;
   promptAnswers: string[];
   setPromptAnswersFromPage: (a: string[]) => void;

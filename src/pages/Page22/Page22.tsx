@@ -19,6 +19,16 @@ export const Page22 = () => {
     'Ви маєте проблеми зі сном?'
   ];
 
+  const interpretations = [
+    'Моя діяльність проходила в умовах загрози для життя.',
+    'Я гостро реагую на різкі звуки, що нагадують про травматичні події минулого.',
+    'Я відчуваю відчуженість до інших людей.',
+    'Мене легко роздратувати навіть через дрібниці.',
+    'Я уникаю спогадів про травматичні події.',
+    'Я відчуваю провину за деякі речі, що робив раніше.',
+    'Я маю проблеми зі сном.'
+  ];
+
   const handleSelect = (question: string, value: string) => {
     setAnswers((prev) => ({ ...prev, [question]: value }));
   };
@@ -27,24 +37,22 @@ export const Page22 = () => {
     if (Object.keys(answers).length === questions.length) {
       const takCount = Object.values(answers).filter((val) => val === 'так').length;
 
-      const selected = questions
-        .map((q, i) => {
-          const val = answers[`q${i}`];
-          return val === 'так' ? `${i + 1}. ${q}` : null;
-        })
-        .filter(Boolean) as string[];
-
-      setPromptAnswersFromPage(selected);
       setDiagnosis(takCount >= 4 ? 'птср' : '');
 
       if (takCount >= 4) {
+        // Красная зона — без отправки промпта
         navigate('/page5');
       } else {
+        // Жёлтая зона — добавляем интерпретации и отправляем в LLM
+        const selected = interpretations.filter((_, i) => answers[`q${i}`] === 'так');
+        selected.push('Я дуже погано почуваюся.');
+        setPromptAnswersFromPage(selected);
         navigate('/page4');
       }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    } // eslint-disable-next-line react-hooks/exhaustive-deps
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [answers]);
 
   return (
@@ -60,7 +68,9 @@ export const Page22 = () => {
                 strokeWidth="4"
               />
             </svg>
-            <span className="button-text">обери відповідь</span>
+            <span className="button-text">
+              відзнач відповідь у КОЖНОМ питанні і все спрацює автоматично
+            </span>
           </div>
 
           <div className="questionnaire-pairs">

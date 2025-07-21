@@ -20,14 +20,20 @@ export const Page21 = () => {
     const firstGroup = checked.slice(0, 4).filter(Boolean).length;
     const secondGroup = checked.slice(4, 8).filter(Boolean).length;
 
-    const selectedSymptoms = questions
-      .map((q, i) => (checked[i] ? `${i + 1}. ${q}` : null))
-      .filter(Boolean) as string[];
+    const interpretations = [
+      'Я відчуваю постійний сум та пригніченість.',
+      'Я відчуваю насолоду від життя.',
+      'Я відчуваю постійну безпричинну втому та виснаження.',
+      'У мене бувають думки про власну непотрібність, зайвість.',
+      'Я відчуваю безпричинний страх і тривогу.',
+      'Я постійно напружений, мені важко розслабитись.',
+      'У мене відчуття внутрішнього тремтіння, ознобу.',
+      'Мене турбують думки, що в майбутньому станеться щось погане.'
+    ];
 
-    // Сохраняем ответы в контекст
+    const selectedSymptoms = interpretations.filter((_, i) => checked[i]);
     setPromptAnswersFromPage(selectedSymptoms);
 
-    // Назначаем диагноз
     if (firstGroup >= 3 && secondGroup >= 3) {
       setDiagnosis('синдром'); // Тревожно-депрессивный
     } else if (firstGroup >= 3) {

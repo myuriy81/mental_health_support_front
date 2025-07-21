@@ -15,14 +15,18 @@ export const Page4 = () => {
   const [loading, setLoading] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const chatWindowRef = useRef<HTMLDivElement>(null);
+  const [initialAutoMessage, setInitialAutoMessage] = useState(true);
 
   const handleSend = useCallback(
-    async (customInput?: string) => {
+    async (customInput?: string, hideUserMessage = false) => {
       const text = (customInput ?? input).trim();
       if (!text) return;
 
-      const userMsg: Message = { sender: 'user', text };
-      setChat((prev) => [...prev, userMsg]);
+      if (!hideUserMessage) {
+        const userMsg: Message = { sender: 'user', text };
+        setChat((prev) => [...prev, userMsg]);
+      }
+
       setLoading(true);
 
       const aiResponse = await fetchLLMResponse(text);
@@ -57,15 +61,17 @@ export const Page4 = () => {
   }, [chat]);
 
   useEffect(() => {
-    if (promptAnswers.length > 0 && chat.length === 0) {
-      const fullPrompt = `Користувач зазначив наступні проблеми:\n\n${promptAnswers.join('\n')}\n\nНадай йому підтримку та рекомендації.`;
-      handleSend(fullPrompt);
+    if (promptAnswers.length > 0 && chat.length === 0 && initialAutoMessage) {
+      const fullPrompt = promptAnswers.join('\n');
+      handleSend(fullPrompt, true); // true = скрыть user message
+      setInitialAutoMessage(false); // чтобы больше не скрывать в будущем
     }
-  }, [promptAnswers, chat.length, handleSend]);
+  }, [promptAnswers, chat.length, handleSend, initialAutoMessage]);
 
   return (
     <div className="page4">
-      <p className="title-text">онлайн психолог</p>
+      <p className="title-text4">онлайн психолог</p>
+      <p className="text4">докечайся першої відповіді</p>
 
       <div className="chat-interface">
         <div className="framed-box">

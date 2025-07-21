@@ -1,19 +1,45 @@
 // Page5.tsx
 import './Page5.scss';
+import { useAnswers } from '../../context/AnswersContext';
 
 export const Page5 = () => {
+  const { diagnosis } = useAnswers();
+
+  const getAlertMessage = () => {
+    switch (diagnosis) {
+      case 'депресія':
+        return 'У тебе глибокий депресивний синдром!\nЗв’яжись з ним терміново! Інакше може бути пізно.';
+      case 'тривога':
+        return 'У тебе глибокий тривожний синдром!\nЗв’яжись з ним терміново! Інакше може бути пізно.';
+      case 'синдром':
+        return 'У тебе глибокий тривожно-депресивний синдром!\nЗв’яжись з ним терміново! Інакше може бути пізно.';
+      case 'птср':
+        return 'У тебе яскраво виражений ПТСР!\nЗв’яжись з ним терміново! Інакше може бути пізно.';
+      case 'суїцид':
+        return 'У тебе високий ризик суїциду!\nЗв’яжись з ним терміново! Інакше може бути пізно.';
+      default:
+        return '';
+    }
+  };
+
+  const alertMessage = getAlertMessage();
+
   return (
     <div className="page5">
       <div className="page1-content">
         <div className="content-box1">
           <div className="content-box-danger">
-            <h1 className="title-text-danger">
-              Зв’яжись з ним терміново!&nbsp;Інакше може бути пізно.
-            </h1>
+            {alertMessage && (
+              <div className="alert-box red title-text-danger">
+                {alertMessage.split('\n').map((line, index) => (
+                  <p key={index}>{line}</p>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="psycholog">
-            <h3>((Для редактирования!!! Інформація та персонаж вигадані))</h3>
+            <h3>((Для редагування!!! Інформація та персонаж вигадані))</h3>
           </div>
 
           <div className="psychologist-block">

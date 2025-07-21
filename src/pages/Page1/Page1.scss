@@ -119,6 +119,7 @@
   margin-top: 10rem;
   margin-bottom: 2rem;
   animation: pulse 3s infinite ease-in-out;
+  cursor: pointer;
 
 
   .button-frame {
@@ -231,4 +232,8 @@
       color: #84f8ff;
     }
   }
+}
+
+.paragraph1{
+  margin-top: 120px;
 }
