@@ -1,10 +1,8 @@
 import { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
 
-// Тип для диагноза
 export type Diagnosis = 'депресія' | 'тривога' | 'синдром' | 'птср' | 'суїцид' | '';
 
-// Тип контекста
 type AnswersContextType = {
   answers: string[];
   setAnswers: (a: string[]) => void;
@@ -15,10 +13,8 @@ type AnswersContextType = {
   resetAll: () => void;
 };
 
-// Создание контекста
 const AnswersContext = createContext<AnswersContextType | undefined>(undefined);
 
-// Провайдер
 export const AnswersProvider = ({ children }: { children: ReactNode }) => {
   const [answers, setAnswersState] = useState<string[]>([]);
   const [diagnosis, setDiagnosisState] = useState<Diagnosis>('');
@@ -50,7 +46,6 @@ export const AnswersProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// Хук
 export const useAnswers = (): AnswersContextType => {
   const context = useContext(AnswersContext);
   if (!context) {
