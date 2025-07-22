@@ -64,23 +64,6 @@ margin-top: 0;
     }
   }
 
-  &__lang {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-
-    img {
-    width: 100%;
-    height: auto;
-    display: block;
-    }
-
-    span {
-      color: #fff;
-      font-weight: bold;
-    }
-  }
-
   &__socials {
     display: flex;
     justify-content: center;

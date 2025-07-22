@@ -58,12 +58,18 @@ export const Page1 = () => {
             соромитись. Просто спробуй. Якщо не зайде — ніхто не образиться.
           </p>
         </div>
-        <div className="custom-button3">
+        <div className="custom-buttonMain">
           <svg viewBox="0 0 300 70" className="button-frame" preserveAspectRatio="none">
-            <path d="M15 0 H300 V46 L284 70 H0 V23 Z" fill="none" stroke="white" strokeWidth="4" />
+            <path
+              d="M15 0 H300 V46 L284 70 H0 V23 Z"
+              fill="#ffaa2b"
+              stroke="#ffaa2b"
+              strokeWidth="0"
+            />
           </svg>
+
           <span>
-            <Link to="/page2" className="button-text">
+            <Link to="/page2" className="button-textMain">
               скористатись
             </Link>
           </span>

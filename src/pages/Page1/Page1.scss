@@ -8,23 +8,18 @@
   background-color: #000;
   color: #fff;
   padding: 2rem;
-
   display: flex;
   justify-content: center;
   align-items: flex-start;
 
   .content-box1 {
     width: calc(100vw - 94px);
-    margin-left: 15px;
-    margin-right: 15px;
-    max-width: none;
+    margin: 0 15px;
     box-sizing: border-box;
-    padding: 4px;
-    margin: 0;
+    padding: 4px 80px;
+    max-width: none;
     border: 1px solid white;
     position: relative;
-    padding-left: 80px;
-    padding-right: 80px;
 
     // Углы-пульсаторы
     &::before,
@@ -52,32 +47,23 @@
       right: -5px;
       border-left: none;
       border-top: none;
-      background: radial-gradient(
-        circle at bottom right,
-        rgba(255, 170, 43, 0.65),
-        transparent 80%
-      );
+      background: radial-gradient(circle at bottom right, rgba(255, 170, 43, 0.65), transparent 80%);
     }
   }
 }
 
-// Пульсация углов
 @keyframes blinkGlow {
-  0% {
-    opacity: 0;
-  }
-  15% {
-    opacity: 0.3;
-  }
-  45% {
-    opacity: 1;
-  }
-  70% {
-    opacity: 0.3;
-  }
-  100% {
-    opacity: 0;
-  }
+  0% { opacity: 0; }
+  15% { opacity: 0.3; }
+  45% { opacity: 1; }
+  70% { opacity: 0.3; }
+  100% { opacity: 0; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 .title-text1 {
@@ -98,29 +84,19 @@
   letter-spacing: 0.2px;
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05); // Пульс — размер
-  }
-  100% {
-    transform: scale(1);
-  }
+.paragraph1 {
+  margin-top: 120px;
 }
 
-.custom-button2 {
+.custom-button2,
+.custom-buttonMain {
   width: 270px;
   height: 42px;
   background: transparent;
   position: relative;
-  margin: 1rem auto;
-  margin-top: 10rem;
-  margin-bottom: 2rem;
+  margin: 1rem auto 2rem;
   animation: pulse 3s infinite ease-in-out;
   cursor: pointer;
-
 
   .button-frame {
     position: absolute;
@@ -129,34 +105,36 @@
     top: 0;
     left: 0;
     pointer-events: none;
-    transition:
-      stroke 0.3s ease,
-      transform 0.3s ease;
+    transition: fill 0.3s ease, stroke 0.3s ease;
   }
 
+  .button-text,
+  .button-textMain {
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+}
+
+// Специфика стиля для голубой кнопки
+.custom-button2 {
   .button-frame path {
     stroke: #00f0ff;
   }
 
   .button-text {
-    text-decoration: none;
-    position: relative;
-    z-index: 1;
     color: #00f0ff;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 1;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    transition:
-      color 0.3s ease,
-      transform 0.3s ease;
   }
 
   &:hover {
@@ -172,52 +150,18 @@
     }
   }
 }
-.custom-button3 {
-  width: 270px;
-  height: 42px;
-  background: transparent;
-  position: relative;
-  margin: 1rem auto;
+
+.custom-buttonMain {
   margin-top: 4rem;
-  margin-bottom: 2rem;
-  animation: pulse 3s infinite ease-in-out;
-
-
-  .button-frame {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    transition:
-      stroke 0.3s ease,
-      transform 0.3s ease;
-  }
 
   .button-frame path {
-    stroke: red;
+    fill: #ffaa2b;
+    stroke: #ffaa2b;
+    stroke-width: 0;
   }
 
-  .button-text {
-    text-decoration: none;
-    position: relative;
-    z-index: 1;
-    color: red;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 1;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    transition:
-      color 0.3s ease,
-      transform 0.3s ease;
+  .button-textMain {
+    color: black;
   }
 
   &:hover {
@@ -225,15 +169,11 @@
     transform: scale(0.96);
 
     .button-frame path {
-      stroke: #84f8ff;
+      fill: #cc8800; 
     }
 
-    .button-text {
-      color: #84f8ff;
+    .button-textMain {
+      color: black;
     }
   }
-}
-
-.paragraph1{
-  margin-top: 120px;
 }

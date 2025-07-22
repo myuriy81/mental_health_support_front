@@ -148,8 +148,6 @@ export const Page5 = () => {
               </div>
             ))}
           </div>
-
-          <div className="custom-button3">...</div>
         </div>
       </div>
     </div>
