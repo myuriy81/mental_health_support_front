@@ -22,21 +22,31 @@ export const Page4 = () => {
       const text = (customInput ?? input).trim();
       if (!text) return;
 
+      let updatedChat = [...chat];
+
       if (!hideUserMessage) {
         const userMsg: Message = { sender: 'user', text };
-        setChat((prev) => [...prev, userMsg]);
+        updatedChat = [...updatedChat, userMsg];
+        setChat(updatedChat);
       }
 
       setLoading(true);
 
-      const aiResponse = await fetchLLMResponse(text);
+      const messagesForLLM = [
+        ...updatedChat.map((msg) => ({
+          role: (msg.sender === 'user' ? 'user' : 'assistant') as 'user' | 'assistant' | 'system',
+          content: msg.text
+        }))
+      ];
+
+      const aiResponse = await fetchLLMResponse(messagesForLLM);
       const aiMsg: Message = { sender: 'ai', text: aiResponse };
 
       setChat((prev) => [...prev, aiMsg]);
       if (!customInput) setInput('');
       setLoading(false);
     },
-    [input]
+    [input, chat]
   );
 
   useEffect(() => {
@@ -63,15 +73,15 @@ export const Page4 = () => {
   useEffect(() => {
     if (promptAnswers.length > 0 && chat.length === 0 && initialAutoMessage) {
       const fullPrompt = promptAnswers.join('\n');
-      handleSend(fullPrompt, true); // true = скрыть user message
-      setInitialAutoMessage(false); // чтобы больше не скрывать в будущем
+      handleSend(fullPrompt, true);
+      setInitialAutoMessage(false);
     }
   }, [promptAnswers, chat.length, handleSend, initialAutoMessage]);
 
   return (
     <div className="page4">
       <p className="title-text4">онлайн психолог</p>
-      <p className="text4">докечайся першої відповіді</p>
+      <p className="text4">дочекайся першої відповіді</p>
 
       <div className="chat-interface">
         <div className="framed-box">
@@ -110,11 +120,11 @@ export const Page4 = () => {
           <div ref={chatWindowRef} className={`chat-window${chat.length === 0 ? ' empty' : ''}`}>
             {chat.map((msg, index) => (
               <p key={index} className={msg.sender === 'user' ? 'user' : 'ai'}>
-                {msg.sender === 'user' ? '👨‍✈️: ' : '👨‍⚕️: '}
+                {msg.sender === 'user' ? '👨‍✈️: ' : '👩‍⚕️: '}
                 {msg.text}
               </p>
             ))}
-            {loading && <p className="ai">👨‍⚕️: Печатает...</p>}
+            {loading && <p className="ai">👩‍⚕️: Печатает...</p>}
           </div>
         </div>
       </div>
