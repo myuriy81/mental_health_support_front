@@ -4,6 +4,7 @@ export const fetchLLMResponse = async (
   messages: { role: 'user' | 'assistant' | 'system'; content: string }[]
 ): Promise<string> => {
   try {
+    //console.log('Отправляю на бекенд:', JSON.stringify({ messages }));
     const res = await fetch(BACKEND_URL, {
       method: 'POST',
       headers: {

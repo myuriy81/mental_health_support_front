@@ -32,11 +32,12 @@ export const Page4 = () => {
 
       setLoading(true);
 
-      const messagesForLLM = [
+      const messagesForLLM: { role: 'user' | 'assistant' | 'system'; content: string }[] = [
         ...updatedChat.map((msg) => ({
-          role: (msg.sender === 'user' ? 'user' : 'assistant') as 'user' | 'assistant' | 'system',
+          role: (msg.sender === 'user' ? 'user' : 'assistant') as 'user' | 'assistant',
           content: msg.text
-        }))
+        })),
+        ...(customInput ? [{ role: 'user' as const, content: customInput }] : [])
       ];
 
       const aiResponse = await fetchLLMResponse(messagesForLLM);
@@ -71,6 +72,7 @@ export const Page4 = () => {
   }, [chat]);
 
   useEffect(() => {
+    console.log('Page4 promptAnswers:', promptAnswers); //ллыддыджыоовллылыооыоыо
     if (promptAnswers.length > 0 && chat.length === 0 && initialAutoMessage) {
       const fullPrompt = promptAnswers.join('\n');
       handleSend(fullPrompt, true);
