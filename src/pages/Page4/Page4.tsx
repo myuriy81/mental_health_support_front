@@ -17,6 +17,21 @@ export const Page4 = () => {
   const chatWindowRef = useRef<HTMLDivElement>(null);
   const [initialAutoMessage, setInitialAutoMessage] = useState(true);
 
+  const wakeUpLLM = async () => {
+    try {
+      await fetch('https://mental-health-support-ia90.onrender.com/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: [{ role: 'user', content: 'ping' }]
+        })
+      });
+      console.log('LLM прогріт');
+    } catch (err) {
+      console.warn('Не вдалося прогріти LLM:', err);
+    }
+  };
+
   const handleSend = useCallback(
     async (customInput?: string, hideUserMessage = false) => {
       const text = (customInput ?? input).trim();
@@ -49,6 +64,10 @@ export const Page4 = () => {
     },
     [input, chat]
   );
+
+  useEffect(() => {
+    wakeUpLLM(); // прогрев при старте
+  }, []);
 
   useEffect(() => {
     if (textareaRef.current) {
