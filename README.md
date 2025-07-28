@@ -1,71 +1,67 @@
-# React + TypeScript + Vite
+# Mental Health Support App
 
-[DEMO LINK](https://myuriy81.github.io/mental_health_support_front/)
+A web-based application designed to provide initial psychological assessment and support for individuals experiencing stress, anxiety, depression, or PTSD. 
+The methodology for assessing psychological condition was developed by practicing psychiatrists of the highest category.
+The app offers a simple interface for users to answer a series of targeted questions, after which it either connects them to a human specialist or initiates a conversation with an AI-powered assistant.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🔗 Live Demo
 
-Currently, two official plugins are available:
+[Visit the app](https://myuriy81.github.io/mental_health_support_front/) 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🧠 Key Features
 
-## Expanding the ESLint configuration
+- Multi-step psychological self-assessment forms
+- Automatic diagnosis detection (e.g., depression, anxiety, PTSD)
+- Dynamic routing based on critical response patterns
+- Emergency alert system for high suicide risk
+- Integration with LLM (Large Language Model) for initial dialogue
+- Escalation to human support when needed
+- UI/UX tailored for quick, emotional response and clarity
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 💡 Technologies Used
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **React** + **TypeScript**
+- **React Router** – for dynamic routing
+- **SCSS** – responsive styling
+- **Context API** – state management for answers, diagnosis, and LLM prompt
+- **Fetch API** – interaction with the backend and LLM service
+- **Vite** – for fast build and development
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked
+## ⚙️ Functionality Logic
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname
-      }
-      // other options...
-    }
-  }
-]);
-```
+- `Page3`: Suicide risk screening.
+- `Page21`: Depression/Anxiety questionnaire.
+- `Page22`: PTSD check.
+- `Page4`: LLM support chat (shown in moderate-risk cases).
+- `Page5`: Emergency contact and warning display (for high-risk cases).
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The prompt sent to LLM is based on **interpreted answers**, not just numeric values, ensuring emotionally relevant input.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
+## 📁 File Structure Highlights
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname
-      }
-      // other options...
-    }
-  }
-]);
-```
+- `AnswersContext.tsx` – manages user answers, diagnosis, and prompt formation
+- `Page3.tsx`, `Page21.tsx`, `Page22.tsx` – form logic and score interpretation
+- `Page4.tsx` – chat interface with LLM
+- `Page5.tsx` – final alert and support redirection
+
+## 📦 Optimization & UX
+
+- No unnecessary reloads or rerenders
+- Clean error handling and fallbacks
+- Styled buttons and transitions for emotional clarity
+- Mobile-first responsive design
+- Red/yellow zone logic for guiding user flows
+
+## 🚨 Safety-Oriented Features
+
+- User never sees their raw "score"
+- AI input formatted like a personal message: _"I feel like I’m losing control..."_
+- Emergency message displayed in red box if threshold is met
+
+## 📝 Development
+
+To run locally:
+
+```bash
+npm install
+npm run dev
