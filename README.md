@@ -69,6 +69,6 @@ npm run dev
 
 ## License
 
-This project is © Timm Thaler, 2025. All rights reserved.
+This project is © Yurii Mosin, 2025. All rights reserved.
 
 Any reproduction, modification, distribution or commercial use without explicit permission is strictly prohibited.
